@@ -1,0 +1,19 @@
+{
+  "name": "webpack-learn",
+  "version": "1.0.0",
+  "description": "a webpack demo from offical website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VisonM/webpack-learn.git"
+  },
+  "author": "vision",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VisonM/webpack-learn/issues"
+  },
+  "homepage": "https://github.com/VisonM/webpack-learn#readme"
+}
