@@ -4,7 +4,8 @@
   "description": "a webpack demo from offical website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/VisonM/webpack-learn/issues"
   },
-  "homepage": "https://github.com/VisonM/webpack-learn#readme"
+  "homepage": "https://github.com/VisonM/webpack-learn#readme",
+  "devDependencies": {
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6"
+  }
 }
