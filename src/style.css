@@ -1,0 +1,12 @@
+ @font-face {
+   font-family: 'VFont';
+   src: url('./fonts/icomoon.woff') format('woff');
+   font-weight: 600;
+   font-style: normal;
+ }
+
+ .hello {
+   color: red;
+   font-family: 'VFont';
+   background: url('./icon.png') no-repeat;
+ }
