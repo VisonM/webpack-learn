@@ -38,5 +38,12 @@ module.exports = {
         use: ['xml-loader']
       }
     ]
+  },
+  resolve: {
+    alias: {
+      Util: path.resolve(__dirname, 'src/util/'),
+      Component: path.resolve(__dirname, 'src/component/')
+    }
   }
+
 };
