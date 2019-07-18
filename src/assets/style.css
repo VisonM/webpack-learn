@@ -6,7 +6,10 @@
  }
 
  .hello {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
    color: red;
    font-family: 'VFont';
-   background: url('./icon.png') no-repeat;
  }
