@@ -1,7 +1,8 @@
 const path = require("path");
-const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require("webpack");
 module.exports = {
   entry: {
     index: "./src/index.js",
@@ -23,8 +24,21 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|vue|jsx)&/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
+        }
+      },
+      {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
       },
       // {
       //   test: /\.(png|gif|png|webp|svg)$/,
@@ -55,15 +69,6 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.ProgressPlugin(),
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: "管理输出"
-    }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ],
   resolve: {
     alias: {
       Util: path.resolve(__dirname, "src/util/"),
@@ -71,31 +76,12 @@ module.exports = {
       Assets: path.resolve(__dirname, "src/assets")
     }
   },
-  devtool: "inline-source-map",
-  devServer: {
-    contentBase: "./dist",
-    compress: true,
-    hot: true,
-    port: 9000,
-    host: "0.0.0.0",
-    allowedHosts: ["www.baidu.com", "easymock.com"],
-    proxy: {
-      "/api": {
-        pathRewrite: {
-          "^/api": ""
-        },
-        target: "http:localhost:8081",
-        bypass: function(req, res, proxyOptions) {
-          if (req.headers.accept.indexOf("html") !== -1) {
-            console.log(
-              "Skipping proxy for browser request but still proxy api request."
-            );
-            return "/index.html";
-          }
-        },
-        changeOrigin: true,
-        secure: false //接受HTTPS request
-      }
-    }
-  }
+  plugins: [
+    new webpack.ProgressPlugin(),
+    new CleanWebpackPlugin(),
+    new ExtractTextPlugin("styles.css"),
+    new HtmlWebpackPlugin({
+      title: "webpack"
+    })
+  ]
 };
