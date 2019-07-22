@@ -2,8 +2,7 @@ import "Assets/style.css";
 import ICON from "Assets/icon.png";
 import DATA from "Assets/data.xml";
 import Util from "Util/util";
-// const Util = require('Util/util')
-import { print } from "./print";
+import Velocity from "velocity-animate/velocity";
 
 function component() {
   if (process.env.NODE_ENV === "production") {
@@ -13,21 +12,27 @@ function component() {
   }
 
   const element = document.createElement("div");
-  const btn = document.createElement("button");
   const image = new Image();
 
   element.innerHTML = `hello webpack ! I am vision !!`;
   element.classList.add("hello");
-
   image.src = ICON;
-
-  btn.innerHTML = "Click me and check the console!!!";
-  btn.onclick = print;
-
   element.appendChild(image);
-  element.appendChild(btn);
+
+  Velocity(
+    element,
+    {
+      translateY: "135px",
+      backgroundColor: ["#222", "#043d99"]
+    },
+    {
+      easing: [1000, 15],
+      duration: "3000"
+    }
+  );
 
   console.log(DATA, Util.isWexin());
   return element;
 }
+
 document.body.appendChild(component());

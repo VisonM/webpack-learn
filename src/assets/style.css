@@ -12,4 +12,5 @@
    flex-direction: column;
    color: red;
    font-family: 'VFont';
+   transform: translateY(0);
  }
